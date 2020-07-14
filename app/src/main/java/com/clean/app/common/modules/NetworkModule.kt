@@ -1,10 +1,13 @@
 package com.clean.app.common.modules
 
 import com.clean.app.BuildConfig
+import com.clean.app.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -52,6 +55,24 @@ object NetworkModule {
             clientBuilder.addInterceptor(loggingInterceptor)
         }
         return clientBuilder.build()
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideRetrofit(httpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .client(httpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun provideServiceApi(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 
 }
