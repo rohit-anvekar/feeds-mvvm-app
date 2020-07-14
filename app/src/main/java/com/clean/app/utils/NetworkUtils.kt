@@ -7,14 +7,14 @@ import java.io.IOException
 /**
  * Created by rohit.anvekar on 14/7/20.
  */
-suspend fun <T: Any> safeApiCall(
+suspend fun <T: Any> apiCall(
     call: suspend () -> ApiResponse<T>,
     errorMessage: String
 ): ApiResponse<T>{
     return try {
         call()
     }catch (e: Exception){
-        Log.e("safeApiCall","${e.message}")
+        Log.e("apiCall","${e.message}")
         ApiResponse.Exception(IOException(e.message, e))
     }
 }

@@ -3,7 +3,7 @@ package com.clean.app.data.repository
 import com.clean.app.data.entity.Feeds
 import com.clean.app.data.remote.ApiResponse
 import com.clean.app.data.remote.ApiService
-import com.clean.app.utils.safeApiCall
+import com.clean.app.utils.apiCall
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,7 +16,7 @@ class FeedsRepositoryImpl @Inject constructor(
 ) : FeedsRepository {
 
     override suspend fun getFeeds(url: String): ApiResponse<Feeds> {
-        return safeApiCall(
+        return apiCall(
                 call = { getFeedList(url) },
                 errorMessage = "Error in get feeds api call!"
             )
