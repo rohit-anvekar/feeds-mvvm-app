@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/di/components/ApplicationComponent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/di/modules/NetworkModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/ui/feeds/test.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/view/feeds/FeedsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/views/feeds/FeedsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/res/layout/activity_feeds.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
