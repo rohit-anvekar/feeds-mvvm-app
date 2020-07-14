@@ -3,6 +3,31 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/common/Injector.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/common/ViewModelFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/common/components/ApplicationComponent.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/common/modules/ApplicationModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/common/modules/NetworkModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../clean-mvvm-kotlin-app/app/src/main/java/com/clean/app/di/components/ApplicationComponent.kt">
           <value>
             <set />
@@ -34,6 +59,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/clean/app/views/feeds/FeedsActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_feeds.xml">
           <value>
             <set />
           </value>
