@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="row"
+            type="com.clean.app.data.entity.Row" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/titleTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@{row.title}"
+            android:textAppearance="@style/titleBlueText"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Space program A moose is a common sight in Canada. A moose is a common sight in Canada. Tall and majestic, they represent many of the valuesTall and majestic, they represent many of the values" />
+
+        <ImageView
+            android:id="@+id/detailImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/ic_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/feedImgView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/feedImgView" />
+
+        <ImageView
+            android:id="@+id/feedImgView"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="8dp"
+            android:context="@{context}"
+            android:imageUrl='@{row.imageHref == null ? "" : row.imageHref}'
+            app:layout_constraintEnd_toStartOf="@+id/detailImgView"
+            app:layout_constraintTop_toBottomOf="@+id/titleTxtView" />
+
+        <TextView
+            android:id="@+id/descriptionTxtView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:autoSizePresetSizes="@array/autosize_text_sizes"
+            android:autoSizeTextType="uniform"
+            android:text='@{row.description == null ? "No description available" : row.description}'
+            android:textAppearance="@style/subTitleText"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintEnd_toStartOf="@+id/feedImgView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleTxtView"
+            tools:text="A moose is a common sight in Canada. Tall and majestic, they represent many of the values which Canadians imagine that they possess. They grow up to 2.7 metres long and can weigh over 700 kg. They swim at 10 km/h. Moose antlers weigh roughly 20 kg. The plural of moose is actually 'meese', despite what most dictionaries, encyclopedias, and experts will tell you." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

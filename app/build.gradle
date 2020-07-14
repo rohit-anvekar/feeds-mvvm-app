@@ -17,6 +17,21 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            keyAlias 'feed-app'
+            keyPassword 'feedsapp'
+            storeFile file('/home/webonise/AndroidStudioProjects/CloneRepo/feeds-mvvm-app/app/feed-app-release-key.jks')
+            storePassword 'feedsapp'
+        }
+        debug {
+            storeFile file('feed-app-release-key.jks')
+            storePassword 'feedsapp'
+            keyAlias 'feed-app'
+            keyPassword 'feedsapp'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,8 +51,8 @@ android {
     }
 
     lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
+        checkReleaseBuilds true
+        abortOnError true
     }
 
     productFlavors {
@@ -50,6 +65,11 @@ android {
             buildConfigField "String", "FEED_URL" , "\"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json/\""
         }
 
+    }
+
+    buildFeatures{
+        dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -68,6 +88,8 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger2_version"
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

@@ -1,7 +1,9 @@
 package com.clean.app.common.components
 
+import com.clean.app.common.VMFactory
 import com.clean.app.common.modules.ApplicationModule
 import com.clean.app.common.modules.NetworkModule
+import com.clean.app.views.feeds.FeedsViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -11,4 +13,6 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = [NetworkModule::class, ApplicationModule::class])
-interface ApplicationComponent
+interface ApplicationComponent{
+    fun feedsViewModelFactory(): VMFactory<FeedsViewModel>
+}
