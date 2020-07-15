@@ -30,7 +30,7 @@ class FeedsViewModel @Inject constructor(private val feedsUseCase: FeedsUseCase)
 
     /**
      * getFeeds() func fetch the latest feeds from api.
-     * @paramre
+     * @param url
      */
     fun getFeeds(url: String) {
         _isLoading.value = true

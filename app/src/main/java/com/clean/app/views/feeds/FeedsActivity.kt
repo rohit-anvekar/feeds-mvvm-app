@@ -1,12 +1,5 @@
 package com.clean.app.views.feeds
 
-import android.annotation.TargetApi
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.Network
-import android.net.NetworkCapabilities
-import android.net.NetworkRequest
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -23,9 +16,6 @@ import com.clean.app.data.entity.Row
 import com.clean.app.utils.ConnectionUtils
 import kotlinx.android.synthetic.main.activity_feeds.*
 import kotlinx.android.synthetic.main.custom_toolbar.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /**
  * Created by rohit.anvekar on 14/7/20.
@@ -46,15 +36,24 @@ class FeedsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feeds)
-        checkNetworkAvailability()
         initFeedViews()
-        loadArticles()
+        loadAndUpdateFeeds()
+    }
+
+    /**
+     * loadAndUpdateFeeds() to perform different operation to display feeds
+     */
+    private fun loadAndUpdateFeeds(){
+        loadFeeds()
         observeFeedData()
         observeErrors()
         observeProgress()
     }
 
-    private fun loadArticles() {
+    /**
+     * loadArticles() func to load
+     */
+    private fun loadFeeds() {
         if (ConnectionUtils.isNetworkAvailable()) {
             viewModel.getFeeds(BuildConfig.FEED_URL)
         } else {
@@ -62,6 +61,9 @@ class FeedsActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * initFeedViews() func to initialize the feed views to display list item.
+     */
     private fun initFeedViews() {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
@@ -79,10 +81,13 @@ class FeedsActivity : AppCompatActivity() {
             })
         recycler_view.adapter = feedsAdapter
         swipeRefreshView.setOnRefreshListener {
-            loadArticles()
+            loadFeeds()
         }
     }
 
+    /**
+     * observeProgress() func to observe the progress
+     */
     private fun observeProgress() {
         viewModel.isLoading.observe(this, Observer { isLoading ->
             if (isLoading)
@@ -94,10 +99,9 @@ class FeedsActivity : AppCompatActivity() {
     }
 
     /**
-     * observeFeedData() func observe the feed data using
+     * observeFeedData() func to observe the feed data
      */
     private fun observeFeedData() {
-
         viewModel.feeds.observe(this, Observer {
             appTitle.text = it.title
             rowList.clear()
@@ -107,6 +111,9 @@ class FeedsActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * observeErrors() func to observe the feed error
+     */
     private fun observeErrors() {
         viewModel.error.observe(this, Observer { errorMesage ->
             showToast(errorMesage)
@@ -114,40 +121,11 @@ class FeedsActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * showToast() func to show message
+     */
     private fun showToast(message : String){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
-
-    /**
-     * Function : checkNetworkAvailability for checking
-     * network availability
-     */
-    fun checkNetworkAvailability() {
-        // get ConnectivityManager
-        val cm:ConnectivityManager =
-            getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val builder: NetworkRequest.Builder = NetworkRequest.Builder()
-            cm.registerNetworkCallback(
-
-                builder.build(),
-                object : ConnectivityManager.NetworkCallback() {
-
-                    override fun onAvailable(network: Network) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            ConnectionUtils.isNetworkAvailableOnAndroidP = true
-                        }
-                    }
-
-                    override fun onLost(network: Network) {
-                        CoroutineScope(Dispatchers.Main).launch {
-                            ConnectionUtils.isNetworkAvailableOnAndroidP = false
-                        }
-                    }
-                }
-            )
-        }
     }
 
 }
