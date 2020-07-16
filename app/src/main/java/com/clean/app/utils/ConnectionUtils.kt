@@ -9,7 +9,7 @@ import android.os.Build
 
 
 /**
- * Created by rohit.anvekar on 29/6/20.
+ * Created by rohit.anvekar on 14/7/20.
  */
 object ConnectionUtils {
 
@@ -27,7 +27,6 @@ object ConnectionUtils {
         val cm: ConnectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val builder: NetworkRequest.Builder = NetworkRequest.Builder()
             cm.registerNetworkCallback(
                 builder.build(),
@@ -41,7 +40,6 @@ object ConnectionUtils {
                     }
                 }
             )
-        }
     }
 
 }

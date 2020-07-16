@@ -3,7 +3,6 @@ package com.clean.app
 import android.app.Application
 import com.clean.app.common.components.ApplicationComponent
 import com.clean.app.common.components.DaggerApplicationComponent
-import com.clean.app.common.modules.ApplicationModule
 import com.clean.app.utils.ConnectionUtils
 
 /**
@@ -19,7 +18,6 @@ class FeedsApplication : Application() {
 
         applicationComponent =
             DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this))
                 .build()
 
         ConnectionUtils.checkNetworkAvailability(this)

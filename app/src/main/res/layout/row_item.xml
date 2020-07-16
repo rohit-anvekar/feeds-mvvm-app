@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
             android:src="@drawable/ic_right_arrow"
+            android:contentDescription="@string/content_desc_imv"
             app:layout_constraintBottom_toBottomOf="@+id/feedImgView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/feedImgView" />
@@ -56,6 +57,7 @@
             android:layout_marginTop="8dp"
             android:context="@{context}"
             android:imageUrl='@{row.imageHref == null ? "" : row.imageHref}'
+            android:contentDescription="@string/content_desc_imv"
             app:layout_constraintEnd_toStartOf="@+id/detailImgView"
             app:layout_constraintTop_toBottomOf="@+id/titleTxtView" />
 

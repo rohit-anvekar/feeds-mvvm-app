@@ -38,8 +38,6 @@ class FeedsUseCaseTest {
             val result = feedsUseCase?.invoke( BuildConfig.FEED_URL)
             Mockito.verify(mockRepo).getFeeds( BuildConfig.FEED_URL)
             assertEquals(result, ApiResponse.Success(feeds))
-
-
         }
     }
 

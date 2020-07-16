@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'jacoco'
 
 android {
     compileSdkVersion 30
@@ -19,16 +20,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'feed-app'
-            keyPassword 'feedsapp'
-            storeFile file('/home/webonise/AndroidStudioProjects/CloneRepo/feeds-mvvm-app/app/feed-app-release-key.jks')
-            storePassword 'feedsapp'
-        }
-        debug {
             storeFile file('feed-app-release-key.jks')
-            storePassword 'feedsapp'
             keyAlias 'feed-app'
             keyPassword 'feedsapp'
+            storePassword 'feedsapp'
         }
     }
 
@@ -36,10 +31,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled = true
+            signingConfig signingConfigs.release
         }
         debug {
             debuggable true
             minifyEnabled false
+            testCoverageEnabled = true
         }
     }
     compileOptions {
@@ -48,6 +46,14 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
     }
 
     lintOptions {
@@ -59,6 +65,7 @@ android {
         production {
             buildConfigField "String", "BASE_URL" , "\"https://dl.dropboxusercontent.com/\""
             buildConfigField "String", "FEED_URL" , "\"https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json/\""
+            signingConfig signingConfigs.release
         }
         develop {
             buildConfigField "String", "BASE_URL" , "\"https://dl.dropboxusercontent.com/\""
@@ -86,16 +93,33 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
     implementation "com.google.dagger:dagger:$dagger2_version"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     kapt "com.google.dagger:dagger-compiler:$dagger2_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    testImplementation 'org.mockito:mockito-core:2.23.4'
-    testImplementation 'org.mockito:mockito-inline:2.23.4'
-    androidTestImplementation 'org.mockito:mockito-android:2.15.0'
+    androidTestImplementation "androidx.test:runner:$androidx_test_version"
+    androidTestImplementation "androidx.test:rules:$androidx_test_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_test_ext_version"
+    testImplementation "androidx.arch.core:core-testing:$androidx_arch_test_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutine_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
+    implementation "androidx.test.espresso:espresso-idling-resource:$androidx_test_espresso"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+    androidTestImplementation "org.mockito:mockito-android:$mockito_android_version"
 
+}
+
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDevelopDebugUnitTest', 'createDevelopDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
 }

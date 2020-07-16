@@ -3,6 +3,8 @@ package com.clean.app.views.feeds
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.clean.app.common.coroutine.CoroutineContextProvider
 import com.clean.app.data.entity.Feeds
 import com.clean.app.data.remote.ApiResponse
 import com.clean.app.domain.FeedsUseCase
@@ -15,7 +17,7 @@ import javax.inject.Inject
 /**
  * Created by rohit.anvekar on 14/7/20.
  */
-class FeedsViewModel @Inject constructor(private val feedsUseCase: FeedsUseCase) :
+class FeedsViewModel @Inject constructor(private val feedsUseCase: FeedsUseCase,private val coroutineContextProvider: CoroutineContextProvider) :
     ViewModel() {
     private val _feeds = MutableLiveData<Feeds>()
     val feeds: LiveData<Feeds>
@@ -34,7 +36,7 @@ class FeedsViewModel @Inject constructor(private val feedsUseCase: FeedsUseCase)
      */
     fun getFeeds(url: String) {
         _isLoading.value = true
-        job = CoroutineScope(Dispatchers.Default).launch {
+        job = viewModelScope.launch {
             val result =  feedsUseCase(url)
             _isLoading.postValue(false)
             when (result) {

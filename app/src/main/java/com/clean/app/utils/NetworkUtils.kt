@@ -15,6 +15,6 @@ suspend fun <T: Any> apiCall(
         call()
     }catch (e: Exception){
         Log.e("apiCall","${e.message}")
-        ApiResponse.Exception(IOException(e.message, e))
+        ApiResponse.Exception(IOException(errorMessage, e))
     }
 }

@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.clean.app.BuildConfig
@@ -26,11 +26,8 @@ class FeedsActivity : AppCompatActivity() {
     private var rowList = mutableListOf<Row>()
 
     private val viewModel: FeedsViewModel by lazy {
-        ViewModelProviders.of(
-            this,
-            Injector.get().feedsViewModelFactory()
-        ).get(FeedsViewModel::class.java)
-
+        ViewModelProvider(this, Injector.get().feedsViewModelFactory())
+            .get(FeedsViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -114,9 +111,9 @@ class FeedsActivity : AppCompatActivity() {
     /**
      * observeErrors() func to observe the feed error
      */
-    private fun observeErrors() {
-        viewModel.error.observe(this, Observer { errorMesage ->
-            showToast(errorMesage)
+    fun observeErrors() {
+        viewModel.error.observe(this, Observer { errorMessage ->
+            showToast(errorMessage)
             swipeRefreshView.isRefreshing = false
         })
     }
