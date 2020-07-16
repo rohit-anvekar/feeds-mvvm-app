@@ -41,7 +41,6 @@ class FeedsActivity : AppCompatActivity() {
      * loadAndUpdateFeeds() to perform different operation to display feeds
      */
     private fun loadAndUpdateFeeds(){
-        loadFeeds()
         observeFeedData()
         observeErrors()
         observeProgress()
@@ -62,6 +61,9 @@ class FeedsActivity : AppCompatActivity() {
      * initFeedViews() func to initialize the feed views to display list item.
      */
     private fun initFeedViews() {
+        btnLoadFeeds.setOnClickListener(View.OnClickListener {
+            loadFeeds()
+        })
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
         recycler_view.addItemDecoration(

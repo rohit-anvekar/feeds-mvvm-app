@@ -3,4 +3,5 @@
     <string name="title_activity_feeds">FeedsActivity</string>
     <string name="network_not_available">Network not available</string>
     <string name="content_desc_imv">Image View</string>
+    <string name="load_feeds">Load Feeds</string>
 </resources>

@@ -3,6 +3,7 @@ package com.clean.app.views.feeds
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -12,9 +13,11 @@ import androidx.test.rule.ActivityTestRule
 import com.clean.app.R
 import com.clean.app.utils.TestUtils
 import com.clean.app.view.feeds.IdlingResourceRule
+import org.hamcrest.Matchers
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.internal.matchers.Not
 
 
 /**
@@ -45,11 +48,22 @@ class FeedsActivityTest {
 
     @Test
     fun `test_feed_progress_bar_visiblity`() {
-        onView(withId(R.id.progressBar)).check(matches(isDisplayed()))
+        onView(withId(R.id.progressBar)).check(matches(Matchers.not(isDisplayed())))
+    }
+
+    @Test
+    fun `test_load_feeds_button_visiblity`() {
+        onView(withId(R.id.btnLoadFeeds)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun `test_load_feeds_button_click`() {
+        onView(withId(R.id.btnLoadFeeds)).perform(click())
     }
 
     @Test
     fun `test_feed_load_and_display_and_scrolling_to_position`() {
+        onView(withId(R.id.btnLoadFeeds)).perform(click())
         val idlingResourceRule = IdlingResourceRule(activityRule, R.id.progressBar)
         IdlingRegistry.getInstance().register(idlingResourceRule)
         onView(withId(R.id.appTitle)).check(matches(withText(appTitle)))
