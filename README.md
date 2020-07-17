@@ -7,4 +7,4 @@ app architeture that implements MVVM architecture using kotlin, Dagger2,Retrofit
     Glide: https://github.com/bumptech/glide
 -------------------------------------------------------------------------------------------------------------------------------
 # Screenshots
-<img src="https://github.com/rohit-anvekar/feeds-mvvm-app/blob/master/screenshots/Screenshot_2020-07-16-18-05-43-418_com.clean.app.jpg"/>
+<img src="https://github.com/rohit-anvekar/feeds-mvvm-app/blob/master/screenshots/Screenshot_2020-07-17-17-19-06-569_com.clean.app.jpg"/>

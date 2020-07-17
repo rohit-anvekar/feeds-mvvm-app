@@ -4,4 +4,7 @@
     <string name="network_not_available">Network not available</string>
     <string name="content_desc_imv">Image View</string>
     <string name="load_feeds">Load Feeds</string>
+    <string name="no_description_available">No description available</string>
+    <string name="dummy_title">Space program A moose is a common sight in Canada. A moose is a common sight in Canada. Tall and majestic, they represent many of the valuesTall and majestic, they represent many of the values</string>
+    <string name="dummy_desc">A moose is a common sight in Canada. Tall and majestic, they represent many of the values which Canadians imagine that they possess. They grow up to 2.7 metres long and can weigh over 700 kg.</string>
 </resources>

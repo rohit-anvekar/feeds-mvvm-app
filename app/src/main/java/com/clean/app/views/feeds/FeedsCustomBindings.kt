@@ -27,7 +27,7 @@ object FeedsCustomBindings {
         Glide.with(context)
             .load(imageUrl)
             .skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transform(CenterCrop())
             .placeholder(getPlaceHolder(context))
             .error(R.drawable.ic_no_image)

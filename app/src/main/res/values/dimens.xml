@@ -1,5 +1,18 @@
 <resources>
     <dimen name="activity_horizontal_margin">8dp</dimen>
     <dimen name="activity_vertical_margin">8dp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
     <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="match_constraints_0dp">0dp</dimen>
+    <dimen name="content_inset_margin_0dp">0dp</dimen>
+    <dimen name="translation_z_margin_15dp">15dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_56dp">56dp</dimen>
+    <dimen name="margin_48dp">48dp</dimen>
+    <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_20sp">20sp</dimen>
+    <dimen name="text_size_22sp">22sp</dimen>
 </resources>
